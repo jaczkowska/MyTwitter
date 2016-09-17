@@ -44,7 +44,7 @@ class Tweet {
 
     //LOAD Tweet from db
     static public function loadTweetById(mysqli $connection, $id) {
-        $db = "SELECT * FROM Tweet WHERE id=$id";
+        $db = "SELECT * FROM tweet WHERE id=$id";
         $result = $connection->query($db);
         if ($result && $result->num_rows == 1) {
             $row = $result->fetch_assoc();
@@ -60,7 +60,7 @@ class Tweet {
     //LOAD ALL Tweets from db by User Id
     static public function loadAllTweetsByUserId(mysqli $connection, $userId) {
 
-        $db = "SELECT * FROM Tweet WHERE user_id = $userId ORDER BY creation_date DESC";
+        $db = "SELECT * FROM tweet WHERE user_id = $userId ORDER BY creation_date DESC";
         $result = $connection->query($db);
 
         $allTweets = [];
@@ -80,7 +80,7 @@ class Tweet {
 
     //LOAD ALL Tweets from db
     static public function loadAllTweets(mysqli $connection) {
-        $db = "SELECT * FROM Tweet ORDER BY creation_date DESC";
+        $db = "SELECT * FROM tweet ORDER BY creation_date DESC";
         $result = $connection->query($bd);
 
         $allTweets = [];
@@ -102,7 +102,7 @@ class Tweet {
     public function saveToDB(mysqli $connection) {
 
         if ($this->id == -1) {
-            $db = "INSERT INTO Tweet(user_id, text, creation_date) VALUES ($this->userId, '$this->text', '$this->creationDate')";
+            $db = "INSERT INTO tweet(user_id, text, creation_date) VALUES ($this->userId, '$this->text', '$this->creationDate')";
             $result = $connection->query($db);
             if ($result) {
                 $this->id = $connection->insert_id;
@@ -116,7 +116,7 @@ class Tweet {
     public function updateTweet(mysqli $connection) {
 
         if ($this->id == -1) {
-            $db = "UPDATE Tweet SET user_id=$this->username, text=$this->text, creation_date=$this->creationDate WHERE id=$this->id";
+            $db = "UPDATE tweet SET user_id=$this->username, text=$this->text, creation_date=$this->creationDate WHERE id=$this->id";
             $result = $connection->query($db);
             
             if ($result == true) {
@@ -126,4 +126,18 @@ class Tweet {
         }
     }
 
+    //DETELE Tweet from db
+    public function deleteTweet(mysqli $connection) {
+        if ($this->id != -1) {
+            $db = "DELETE FROM tweet WHERE id=$this->id";
+            $result = $connection->query($db);
+            if ($result == true) {
+                $this->id = -1;
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+    
 }
