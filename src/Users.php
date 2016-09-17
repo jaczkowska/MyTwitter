@@ -52,20 +52,20 @@ class Users {
     public function saveToDB(mysqli $connection) {
         if ($this->id == -1) {
             //Saving new user to DB
-            $sql = "INSERT INTO users(username, email, hashed_password)
+            $db = "INSERT INTO users(username, email, hashed_password)
                 VALUES ('$this->username', '$this->email', '$this->hashedPassword')";
-            $result = $connection->query($sql);
+            $result = $connection->query($db);
             if ($result == true) {
                 $this->id = $connection->insert_id;
                 return true;
             }
-    // UPDATE User in database
+            // UPDATE User in database
         } else {
-            $sql = "UPDATE users SET username='$this->username',
+            $db = "UPDATE users SET username='$this->username',
                 email='$this->email',
                 hashed_password='$this->hashedPassword'
                 WHERE id=$this->id";
-            $result = $connection->query($sql);
+            $result = $connection->query($db);
             if ($result == true) {
                 return true;
             }
@@ -76,8 +76,8 @@ class Users {
     //DELETE User from database
     public function delete(mysqli $connection) {
         if ($this->id != -1) {
-            $sql = "DELETE FROM Users WHERE id=$this->id";
-            $result = $connection->query($sql);
+            $db = "DELETE FROM Users WHERE id=$this->id";
+            $result = $connection->query($db);
             if ($result == true) {
                 $this->id = -1;
                 return true;
@@ -89,8 +89,8 @@ class Users {
 
     //LOAD 1 User from database
     static public function loadUserById(mysqli $connection, $id) {
-        $sql = "SELECT * FROM Users WHERE id=$id";
-        $result = $connection->query($sql);
+        $db = "SELECT * FROM Users WHERE id=$id";
+        $result = $connection->query($db);
 
         if ($result == true && $result->num_rows == 1) {
             $row = $result->fetch_assoc();
@@ -107,9 +107,9 @@ class Users {
 
     //LOAD all Users from database
     static public function loadAllUsers(mysqli $connection) {
-        $sql = "SELECT * FROM Users";
+        $db = "SELECT * FROM Users";
         $ret = [];
-        $result = $connection->query($sql);
+        $result = $connection->query($db);
         if ($result == true && $result->num_rows != 0) {
             foreach ($result as $row) {
                 $loadedUser = new Users();
@@ -123,10 +123,9 @@ class Users {
         return $ret;
     }
 
-    
     static public function loginUser(mysqli $connection, $email, $password) {
-        $sql = "SELECT * FROM Users WHERE email='$email'";
-        $result = $connection->query($sql);
+        $db = "SELECT * FROM Users WHERE email='$email'";
+        $result = $connection->query($db);
         $row = $result->fetch_assoc();
 
         if ($result == true && $result->num_rows == 1) {
