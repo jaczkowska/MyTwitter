@@ -76,7 +76,7 @@ class Users {
     //DELETE User from database
     public function delete(mysqli $connection) {
         if ($this->id != -1) {
-            $db = "DELETE FROM Users WHERE id=$this->id";
+            $db = "DELETE FROM users WHERE id=$this->id";
             $result = $connection->query($db);
             if ($result == true) {
                 $this->id = -1;
@@ -89,7 +89,7 @@ class Users {
 
     //LOAD 1 User from database
     static public function loadUserById(mysqli $connection, $id) {
-        $db = "SELECT * FROM Users WHERE id=$id";
+        $db = "SELECT * FROM users WHERE id=$id";
         $result = $connection->query($db);
 
         if ($result == true && $result->num_rows == 1) {
@@ -107,7 +107,7 @@ class Users {
 
     //LOAD all Users from database
     static public function loadAllUsers(mysqli $connection) {
-        $db = "SELECT * FROM Users";
+        $db = "SELECT * FROM users";
         $ret = [];
         $result = $connection->query($db);
         if ($result == true && $result->num_rows != 0) {
@@ -124,7 +124,7 @@ class Users {
     }
 
     static public function loginUser(mysqli $connection, $email, $password) {
-        $db = "SELECT * FROM Users WHERE email='$email'";
+        $db = "SELECT * FROM users WHERE email='$email'";
         $result = $connection->query($db);
         $row = $result->fetch_assoc();
 
