@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
     $email = $_POST['mail'];
     $password = $_POST['password'];
 
-    $loggedUser = Users::loadUserById($conn, $email);
+    $loggedUser = Users::loadUserByEmail($conn, $email);
+
     if ($loggedUser != null) {
 
         $hash = $loggedUser->getHashedPassword();
@@ -34,7 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
         echo "Incorrect e-mail or password. Try again!";
     }
 }
-//SING UP//
+
+//SIGN UP//
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['username']) &&
         isset($_POST['newEmail']) &&
@@ -48,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "This e-mail address is already taken. Try another.";
             
         } elseif ($_POST['newPassword1'] != $_POST['newPassword2']) {
-            echo "Deferent password.";
+            echo "Different password.";
             
         } else {
             $newUser = new Users();
@@ -61,16 +63,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if($result) {
                 echo "User <strong>" . $newUser->getUsername() . "</strong> added to database";
             }
-            
-            
-            
         }
     } else {
         echo "<br>";
         echo "Something's wrong...";
     }
-}   
-
+}  
 
 ?>
 
@@ -85,9 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </head>
 
     <body class="bgLogin">
-
-
-
 
         <!-- Login / Sing up-->
 
@@ -110,8 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </form>    
                     <!-- End: Login -->
 
-                    <!-- Sing up -->
-                    <h4>Are You new? Sing up!</h4>
+                    <!-- Sign up -->
+                    <br>
+                    <h4>Are You new? Sign up!</h4>
                     <form class="regForm" action="#" method="POST">
                         <div class="form-group">
                             <label for="username">Login:</label>
@@ -131,13 +127,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-send"> Sign up!</span></button>
                     </form>
-                    <!-- End: Sing up -->
+                    <!-- End: Sign up -->
 
                 </div>
             </div>
         </div>
 
         <!-- FOOTER -->
-<?php require_once 'layouts/footer.php'; ?>
+        <?php require_once 'layouts/footer.php'; ?>
     </body>
 </html>
