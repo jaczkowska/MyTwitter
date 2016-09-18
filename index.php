@@ -79,9 +79,7 @@ $allTweets = Tweet::loadAllTweets($conn);
                                 <h5><span class='glyphicon glyphicon-user'><a href='userPage.php?id=$userId'> $username</a></span></h5>
                                 <span class='glyphicon glyphicon-globe'><a href='tweetDetails.php?id=$tweetId'> $creationDate</a></span>
                                 <input class='form-control input' type='textarea' placeholder='$text' disabled>
-                                <button type='submit' class='btn btn-success col-sm-3 inline'><span class='glyphicon glyphicon-pencil'><a href=''> Edit tweet</a></span></button>
-                                <button type='submit' class='btn btn-danger col-sm-3 inline'><span class='glyphicon glyphicon-trash'><a href=''> Delete tweet</a></span></button>
-                                <button type='submit' class='btn btn-primary col-sm-3 inline'><span class='glyphicon glyphicon-comment'><a href=''> Comment</a></span></button>
+                                <button type='submit' class='btn btn-primary col-sm-3 inline'><span class='glyphicon glyphicon-comment'><a href='tweetDetails.php?id=$tweetId'> Comment </a></span></button>
                                 <br>
                                 <hr>
                             </div>";  
