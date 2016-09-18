@@ -30,7 +30,7 @@
                             }
                             ?>
                         </span></a></li>
-                <li class="active"><a href="userMessages.php"><span class="glyphicon glyphicon-inbox"><span class="badge">4</span></span></a></li>
+                <li class="active"><a href="messages.php"><span class="glyphicon glyphicon-inbox"><span class="badge">4</span></span></a></li>
                 <li class="active"><a href="logout.php">Log Out</a></li>
             </ul>
         </div>
