@@ -26,6 +26,45 @@
     z-index: 0;
 }
 
+.bgTweet {
+    font-family: Arial, sans-serif;
+    background-image: url("../img/tweet.jpg" );
+    background-color: rgba(194,194,194,1);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    color: #000000;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.bgEdit {
+    font-family: Arial, sans-serif;
+    background-image: url("../img/edit.jpg" );
+    background-color: rgba(194,194,194,1);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    color: #000000;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.bgUser {
+    font-family: Arial, sans-serif;
+    background-image: url("../img/user.jpg" );
+    background-color: rgba(194,194,194,1);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    color: #000000;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
 .bgMessage {
     font-family: Arial, sans-serif;
     background-image: url("../img/index.jpg" );
@@ -47,13 +86,18 @@
 .paddingTweetBox{
     padding: 0%;
 }
+
 .paddingMainBG{
     padding: 0%;
+}
+.paddingLogin {
+    margin-top: 10%;
+    padding-bottom: 5%;
 }
 
 .main a, h3, h4, span, label {
     color: #fff;
-    font-weight: 900;
+    font-weight: 600;
 }
 
 #tweetbox {
@@ -61,4 +105,8 @@
     padding-bottom: 10px;
     padding-left: 12px;
     padding-right: 12px;
+}
+
+.badge {
+    background: red;
 }
