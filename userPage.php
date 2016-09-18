@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' &&
                                 <h5><span class='glyphicon glyphicon-user'><a href='userPage.php?id=$userId'> $username</a></span></h5>
                                 <span class='glyphicon glyphicon-globe'><a href='tweetDetails.php?id=$tweetId'> $creationDate</a></span>
                                 <input class='form-control input' type='textarea' placeholder='$text' disabled>
-                                <button type='submit' class='btn btn-primary col-sm-3 inline'><span class='glyphicon glyphicon-comment'><a href='tweetInfo.php?id=$tweetId#comments>". 'Comment'. "<span class='badge'>$commentsNo</span></a></span></button>
+                                <button type='submit' class='btn btn-primary col-sm-3 inline'><span class='glyphicon glyphicon-comment'><a href='tweetDetails.php?id=$tweetId'>". ' Comment '. "<span class='badge'>$commentsNo</span></a></span></button>
                                 <br>
                                 <hr>
                             </div>";
