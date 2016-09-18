@@ -1,18 +1,6 @@
 <?php
 
-/*
-  CREATE TABLE `message` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `sender_id` INT NOT NULL,
-  `reciver_id` INT NOT NULL,
-  `read` INT NOT NULL,
-  `creation_date` DATE,
-  `text` text(255) NOT NULL,
-  PRIMARY KEY(`id`),
-  FOREIGN KEY(`sender_id`) REFERENCES `users`(`id`),
-  FOREIGN KEY(`reciver_id`) REFERENCES `users`(`id`)
-  );
- */
+
 
 class Message {
 

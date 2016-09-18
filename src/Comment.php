@@ -3,21 +3,21 @@
 class Comment {
 
     private $id;
-    private $authorId;
+    private $userId;
     private $tweetId;
     private $creationDate;
     private $text;
 
     public function __construct() {
         $this->id = -1;
-        $this->authorId = 0;
+        $this->userId = 0;
         $this->tweetId = 0;
         $this->creationDate = 0;
         $this->text = 0;
     }
 
-    public function setAuthorId($newAuthorId) {
-        $this->authorId = $newAuthorId;
+    public function setUserId($newUserId) {
+        $this->userId = $newUserId;
     }
 
     public function setTweetId($newTweetId) {
@@ -36,8 +36,8 @@ class Comment {
         return $this->id;
     }
 
-    public function getAuthorId() {
-        return $this->authorId;
+    public function getUserId() {
+        return $this->userId;
     }
 
     public function getTweetId() {
@@ -56,8 +56,8 @@ class Comment {
     public function saveToDB(mysqli $connection) {
         
         if ($this->id == -1) {
-            $db = "INSERT INTO comment(author_id, tweet_id, creation_date, text)
-                    VALUES ($this->authorId, $this->tweetId, '$this->creationDate', '$this->text')";
+            $db = "INSERT INTO comment(user_id, tweet_id, creation_date, text)
+                    VALUES ($this->userId, $this->tweetId, '$this->creationDate', '$this->text')";
             $result = $connection->query($db);
             
             if ($result) {
@@ -77,7 +77,7 @@ class Comment {
             $row = $result->fetch_assoc();
             $loadComment = new Comment();
             $loadComment->id = $row['id'];
-            $loadComment->authorId = $row['author_id'];
+            $loadComment->userId = $row['user_id'];
             $loadComment->tweetId = $row['tweet_id'];
             $loadComment->creationDate = $row['creation_date'];
             $loadComment->text = $row['text'];
@@ -95,7 +95,7 @@ class Comment {
             foreach ($result as $row) {
                 $loadedComment = new Comment();
                 $loadedComment->id = $row['id'];
-                $loadedComment->authorId = $row['author_id'];
+                $loadedComment->userId = $row['user_id'];
                 $loadedComment->tweetId = $row['tweet_id'];
                 $loadedComment->creationDate = $row['creation_date'];
                 $loadedComment->text = $row['text'];

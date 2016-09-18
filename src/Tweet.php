@@ -81,7 +81,7 @@ class Tweet {
     //LOAD ALL Tweets from db
     static public function loadAllTweets(mysqli $connection) {
         $db = "SELECT * FROM tweet ORDER BY creation_date DESC";
-        $result = $connection->query($bd);
+        $result = $connection->query($db);
 
         $allTweets = [];
         if ($result && $result->num_rows != 0) {

@@ -108,7 +108,7 @@ class Users {
     //LOAD all Users from database
     static public function loadAllUsers(mysqli $connection) {
         $db = "SELECT * FROM users";
-        $ret = [];
+        $allUsers = [];
         $result = $connection->query($db);
         if ($result == true && $result->num_rows != 0) {
             foreach ($result as $row) {
@@ -117,10 +117,32 @@ class Users {
                 $loadedUser->username = $row['username'];
                 $loadedUser->hashedPassword = $row['hashed_password'];
                 $loadedUser->email = $row['email'];
-                $ret[] = $loadedUser;
+                $allUsers[] = $loadedUser;
             }
         }
-        return $ret;
+        return $allUsers;
+    }
+    
+    static public function loadUserByEmail(mysqli $connection, $email) {
+        
+        $db = "SELECT * FROM users WHERE email='$email'";
+        
+        $result = $connection->query($db);
+        
+        if($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            
+            $loadedUser= new Users();
+            $loadedUser->id = $row['id'];
+            $loadedUser->username = $row['username'];
+            $loadedUser->hashedPassword = $row['hashed_password'];
+            $loadedUser->email = $row['email'];
+            
+            return $loadedUser;
+        }
+        
+        return null;
+        
     }
 
     static public function loginUser(mysqli $connection, $email, $password) {
@@ -134,8 +156,8 @@ class Users {
                 $loadedUser = new Users();
                 $loadedUser->id = $row['id'];
                 $loadedUser->username = $row['username'];
-                $loadedUser->hashedPassword = $row['hashed_password'];
                 $loadedUser->email = $row['email'];
+                $loadedUser->hashedPassword = $row['hashed_password'];
                 return $loadedUser;
             }
         }
